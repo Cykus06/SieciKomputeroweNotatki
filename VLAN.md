@@ -104,4 +104,51 @@ Producenci opracowali szereg własnych konwencji zwykle całkowicie niezgodnych.
 
 - ### Oznaczanie ramek
 
+    do każdej ramki przesyłanej pomiędzy przełącznikami dodawany jest nagłówek mówiący o ty, do której sieci VLAN należy stacja wysyłająca daną ramkę. Przesyłanie dodatkowych informacji w każdej ramce, wiąże się ze znacznym zwiększeniem obciążenia sieci.
+
+    ![Wizualizacja budowy datagramu IP](oznaczanie_ramek.png)
+    *Żródło: <http://docs.hp.com/en/5992-0538/img/gfx2.png>*
+
+    Max długość ramki ethernet wzrasta z 1514 do 1518 bajtów
+    Niektóre urządzenia (głównie starsze) mogą nie akceptować tak wydłużonej ramki.
+
+    **TPID** - ID protokołu VLAN (zawsze równy 0x8100)
+
+    **TCI** (ang. Control Information)
+
+  - priorytet (ang. User Priority) - priorytet ramki IEEE 802.1p (standard będący uzupełnieniem 802.1Q, regulujący kwestię priorytetyzacji ruchu)
+
+        - 0 - najniższy priorytet
+        - ...
+        - 7 - najwyższy priorytet/
+  - flaga CFI (ang. Canonical Format Identificator) - określa czy ramka może być swobodnie transmitowana. Wartiość 1 oznacza, że ramka nie powinna być przenoszona na porty prowadzące do urządzeń nie wspierających IEEE 802.1Q
+  - identyfikator VLANu (ang. VLAN IDentifier) - może przyjąć 4096 wartości, z których 3 mają znaczenie specjalne:
+    - 000'H: oznacza, że ramka nie zawiera identyfikatora sieci lokalnej, a jedynie informację o priorytecie
+    - 001'H: oznacza, że ramka należy do sieci wirtualnej do której domyślnie należy każdy port mostu/switcha
+    - FFF'H jest identyfikatorem zarezerwowanym i nie powinna być stosowana
+
+  Większość urządzeń sieciowych nie wspiera całego zakresu identyfikatorów sieci wirtualnych.
+
+  Często producenci przełączników ograniczają liczbę możliwych do stworzenia jednocześnie w urządzeniu wirtualnych sieci lokalnych.
+
+  Kto dodaje (i rozpoznaje) dodatkowe pole - dodaje pierwszy przełącznik (lub most) obsługujący VLAN, który ma kontakt z ramką, a ostatni na trasie usuwa pola
+
+#### Uwaga: w sieciach LAN (ethernet) bezpołączeniowość zamienia się na połączeniowość
+
+    w VLANach każda ramka niesie nowy specjalny identyfikator, który jest używany jako indeks tablicy wewnątrz przełącznika, aby ustalić, gdzie ramka ma być wysłana
+
+- ### Zwielokrotnienie czasowe kanału TDM
+
     polega ono na **wydzieleniu** specjalnych **kanałów - szczelin czasowych** na łączach pomiędzy przełącznikami. Poszczególne kanały należą do różnych sieci wirtualnych. Metoda ta oszczędza co prawda na przesyłaniu dodatkowych informacji przez sieć, ale nie pozwala na wykorzystanie całego pasma kanału - część pasma kanału przeznaczona dla jednej sieci VLAN nie może być bowiem używana przez inną, nawet jeżeli nic nie jest w danych podkanale transmitowane.
+
+## Sposób klasyfikacji wirtualnych sieci lokalnych
+
+![Wizualizacja budowy datagramu IP](klasyfikacja_VLAN.png)
+
+**VLAN wewnętrzny** - realizowany w obrębie jednego urządzenia (przełącznika)
+
+**VLAN zewnętrzny** - realizowany w obrębie kilku urządzeń (przełączników)
+
+**VLAN ukryty** - sieć, w której klienci nie mają świadomości wirtualizacji sieci lokalnej, wirtualizacja jest przezroczysta dla klientów
+
+**VLAN jawny** - sieć wirtualna, do której przynależność klientów jest deklarowana i specyfikowana wprost, klient może należeć do kilku VLANów
