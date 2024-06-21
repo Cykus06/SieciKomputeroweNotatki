@@ -109,3 +109,13 @@ Core switch - element "krytyczny"
     - stosunkowo prosta technika sztucznego blokowania medium (tzw. Jamming), dzięki której przełącznik w krytycznych dla niego sytuacjach nie jest bombardowany zbyt dużą liczbą pakietów
     - możliwość definiowania przez użytkowników progów (w odniesieniu do każdego z portów), których przełącznikowi nie wolno przekroczyć
     - ograniczenie liczby pakietów obsługiwanych przez dany port - poprzez zdefiniowanie listy adresów MAC, które dany port może obsługiwać (bezpieczeństwo)
+
+### Możliwość budowania wysokoprzepustowych połączeń między przełącznikami - wielkrotne łącza przełącznik-przełącznik
+
+**Rozwiązanie standardowe** - [agregacja łączy](../agregacja_laczy/agregacja_laczy.md) - **IEEE 802.3ad** (2000)
+
+## Problemy
+
+- Okresowe blokowanie się portów (head of line) polegające na tym, że przepustowość poszczególnych portów zmniejsza się na pewien okres; może to być powodowane nadmiernym przeciążeniem portu pakietami lub niewydolnością układów przełączania wbudowanych w urządzenie
+- Kłopoty z rozszerzalnością systemu przełącznikowego - lepiej jest stosować jeden przełącznik obsługujący różne technolofie i dysponujący większą liczbą portów, niż instalować dwa oddzielne węzły sieci - może wtedy dochodzić do blokowania sieci, gdyż pakiety muszą być przesyłane między portami zainstalowanymi w różnych przełącznikach (dwa przełączniki 12 portowe nie zastąpią nigdy przełącznika 24 portowego)
+- Problemy z "podsłuchiwaniem" ruchu

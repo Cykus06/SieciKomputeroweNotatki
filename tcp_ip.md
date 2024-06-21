@@ -1,6 +1,6 @@
 # TCP IP
 
-ziór protokółów sieciowych, które są odpowiedzialne za komunikację między urządzeniami ("hostami") dołączonymi do dowolnych niejednorodnych sieci komputerowych, takich jak sieci rozległe **WAN** (np. publiczne sieci pakietowe X.25, FR, IP, ...), sieci satelitarne, sieci pakietowe komunikacji ruchomej (radiowe - mobile packets radio networks), (szybkie) sieci lokalne **LAN**.
+zbiór protokółów sieciowych, które są odpowiedzialne za komunikację między urządzeniami ("hostami") dołączonymi do dowolnych niejednorodnych sieci komputerowych, takich jak sieci rozległe **WAN** (np. publiczne sieci pakietowe X.25, FR, IP, ...), sieci satelitarne, sieci pakietowe komunikacji ruchomej (radiowe - mobile packets radio networks), (szybkie) sieci lokalne **LAN**.
 
 Powyższe sieci traktuje się jako jedną wspólnotę (Internet), a protokoły TCP/IP są nazywane protokołami Internetu.
 
