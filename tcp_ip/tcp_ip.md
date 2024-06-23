@@ -14,6 +14,15 @@ Można przedstawić jedynie za pomocą czterech warstw
 
 ![zdjęcie](model.png)
 
+Protokoły warstw 1 i 2 są zależne od technologii sieci składowych Internetu
+
+- w przypadku sieci typu LAN może to być Ethernet lub WIFI
+- w przypadkach sieci WAN protokoły PPP, SLIP, X.25, Farme Relay i Carrier Ethernet
+
+W **warstwie międzysieciowej** funckjonuje bezpołączeniowy protokół IP, który przenosi dane pomiędzy **Warstwą Dostępu do Sieci** a **Warstwą Transportową** w strukturze zwanej [datagramem](../datagram_IP/datagram_IP.md).
+
+Za wybór trasy datagramy poprzez sieć odpowiedzialne są portokoły routingu. Routing w internecie ma charakter hierarchiczny.
+
 ## Cechy wyróżniające usługi TCP/IP
 
 ### Niezależność od technologii
